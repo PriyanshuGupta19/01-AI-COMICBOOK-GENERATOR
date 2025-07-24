@@ -37,13 +37,19 @@ const generatedComics = new Map();
 
 // Routes
 app.get('/', (req, res) => {
-  res.render('index', { title: 'AI Comic Generator' });
+  res.render('home', { title: 'AI Comic Generator' });
 });
+
+// NEW: Comic creation page (formerly the home page)
+app.get('/create', (req, res) => {
+  res.render('index', { title: 'Create Comic - AI Comic Generator' });
+})
 
 app.get('/gallery', (req, res) => {
   const comics = Array.from(generatedComics.values()).reverse();
   res.render('gallery', { title: 'Comic Gallery', comics });
 });
+
 
 app.get('/comic/:id', (req, res) => {
   const comic = generatedComics.get(req.params.id);
